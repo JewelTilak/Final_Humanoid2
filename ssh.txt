@@ -1,0 +1,12 @@
+sudo raspi-config
+
+Go to:
+
+Interface Options → SSH → Enable
+
+hostname -I
+
+ssh pi@<raspberry_pi_ip>
+
+
+ssh pi@192.168.1.14
