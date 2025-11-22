@@ -1,0 +1,16 @@
+mkdir -p /home/pi/.config/autostart
+
+
+mousepad /home/pi/.config/autostart/ms_autostart.desktop
+
+[Desktop Entry]
+Type=Application
+Name=Humanoid MS (with activate)
+Comment=CD into project, activate venv and run ms.py
+Exec=/bin/bash -c "cd /home/pi/Documents/Humanoid && source aura/bin/activate && python ms.py >> /home/pi/Documents/Humanoid/ms_startup.log 2>&1"
+Terminal=false
+X-GNOME-Autostart-enabled=true
+
+
+chmod 644 /home/pi/.config/autostart/ms_autostart.desktop
+
