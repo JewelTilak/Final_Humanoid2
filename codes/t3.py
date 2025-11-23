@@ -350,7 +350,7 @@ class AuraMain(QtWidgets.QMainWindow):
         self.btn_train = GlowButton("Train")
         self.btn_manage = GlowButton("Data")
         self.btn_listen = GlowButton("Ask")
-        self.btn_exit = GlowButton("Exit")
+        # self.btn_exit = GlowButton("Exit")
 
         for b in [self.btn_start, self.btn_train, self.btn_manage, self.btn_listen]:
             btn_col.addWidget(b)
@@ -359,39 +359,39 @@ class AuraMain(QtWidgets.QMainWindow):
         self.btn_train.clicked.connect(self.train_data)
         self.btn_manage.clicked.connect(self.manage_dataset)
         self.btn_listen.clicked.connect(self.run_queries)
-        self.btn_exit.clicked.connect(self.exit_app)
+        # self.btn_exit.clicked.connect(self.exit_app)
 
         layout.addSpacing(240)
         layout.addLayout(btn_col, stretch=0)
 
-        self.btn_exit.setFixedSize(120, 44)
-        self.btn_exit.setStyleSheet("""
-        QPushButton {
-            background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-                stop:0 rgba(120,0,60,220), stop:1 rgba(200,0,100,255));
-            border: 2px solid rgba(255,120,120,0.6);
-            border-radius: 12px;
-            color: rgb(255,230,230);
-            font-size: 18px;
-            font-weight: 700;
-        }
-        QPushButton:hover {
-            background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-                stop:0 rgba(150,0,80,240), stop:1 rgba(255,80,80,255));
-        }
-        """)
+        # self.btn_exit.setFixedSize(120, 44)
+        # self.btn_exit.setStyleSheet("""
+        # QPushButton {
+        #     background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+        #         stop:0 rgba(120,0,60,220), stop:1 rgba(200,0,100,255));
+        #     border: 2px solid rgba(255,120,120,0.6);
+        #     border-radius: 12px;
+        #     color: rgb(255,230,230);
+        #     font-size: 18px;
+        #     font-weight: 700;
+        # }
+        # QPushButton:hover {
+        #     background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+        #         stop:0 rgba(150,0,80,240), stop:1 rgba(255,80,80,255));
+        # }
+        # """)
 
-        exit_container = QtWidgets.QWidget(self.overlay)
-        exit_layout = QtWidgets.QHBoxLayout(exit_container)
-        exit_layout.setContentsMargins(0, 0, 28, 28)
-        exit_layout.addStretch()
-        exit_layout.addWidget(self.btn_exit, alignment=QtCore.Qt.AlignRight | QtCore.Qt.AlignBottom)
-        exit_container.setGeometry(0, 0, self.overlay.width(), self.overlay.height())
-        exit_container.raise_()
+        # exit_container = QtWidgets.QWidget(self.overlay)
+        # exit_layout = QtWidgets.QHBoxLayout(exit_container)
+        # exit_layout.setContentsMargins(0, 0, 28, 28)
+        # exit_layout.addStretch()
+        # exit_layout.addWidget(self.btn_exit, alignment=QtCore.Qt.AlignRight | QtCore.Qt.AlignBottom)
+        # exit_container.setGeometry(0, 0, self.overlay.width(), self.overlay.height())
+        # exit_container.raise_()
 
-        def overlay_resize(event):
-            exit_container.setGeometry(0, 0, self.overlay.width(), self.overlay.height())
-        self.overlay.resizeEvent = overlay_resize
+        # def overlay_resize(event):
+        #     exit_container.setGeometry(0, 0, self.overlay.width(), self.overlay.height())
+        # self.overlay.resizeEvent = overlay_resize
 
         return container
 
