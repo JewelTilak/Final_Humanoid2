@@ -1,0 +1,100 @@
+ Auto-Start mss.py on Raspberry Pi (systemd + venv)
+
+This guide explains how to run the script
+/home/pi/Documents/Humanoid/mss.py
+automatically on boot using systemd while activating the virtual environment aura.
+
+
+
+ 1. Create the systemd service file
+
+bash
+sudo nano /etc/systemd/system/mss.service
+
+
+ Paste this content:
+
+
+[Unit]
+Description=Run mss.py on Raspberry Pi Startup
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/Documents/Humanoid
+ExecStart=/bin/bash -c "source /home/pi/Documents/Humanoid/aura/bin/activate && python /home/pi/Documents/Humanoid/mss.py"
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+
+
+Save & exit:
+
+CTRL + O, Enter
+CTRL + X
+
+
+
+ 2. Reload systemd
+
+bash
+sudo systemctl daemon-reload
+
+
+
+
+ 3. Enable service (start on boot)
+
+bash
+sudo systemctl enable mss.service
+
+
+
+
+ 4. Start service now
+
+bash
+sudo systemctl start mss.service
+
+
+
+
+ 5. Check service status
+
+bash
+systemctl status mss.service
+
+
+
+
+ 6. View script logs
+
+bash
+sudo journalctl -u mss.service -f
+
+
+
+
+ Disabling or Removing the Service
+
+ Stop service (temporary)
+
+bash
+sudo systemctl stop mss.service
+
+
+ Disable service (won’t run on boot)
+
+bash
+sudo systemctl disable mss.service
+
+
+ Remove service completely
+
+bash
+sudo rm /etc/systemd/system/mss.service
+sudo systemctl daemon-reload
